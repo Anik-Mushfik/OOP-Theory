@@ -57,3 +57,25 @@ def remove_duplicates_from_string(input_str):
 in_word = input("Enter a word: ")
 new_word = remove_duplicates_from_string(in_word)
 print(new_word)
+
+
+
+## Problem 4: Check Anagrams
+def are_anagrams(word1, word2):
+    """Takes two strings as input and determines 
+    whether they are anagrams of each other. 
+    Anagrams are words or phrases formed by rearranging 
+    the letters of another word or phrase."""
+
+    if len(word1) != len(word2):
+        return False
+    for letters in word1.lower():
+        if letters not in word2.lower():
+            return False
+    return True
+
+
+word_1 = input("Enter 1st word: ")
+word_2 = input("Enter 2nd word: ")
+anagram = are_anagrams(word_1, word_2)
+print(anagram)
