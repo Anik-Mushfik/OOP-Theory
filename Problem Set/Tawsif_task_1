@@ -37,3 +37,23 @@ def running_total(lst):
 in_lst = list(map(int, input().split()))
 answer = running_total(in_lst)
 print(answer)
+
+
+
+## Problem 3: Remove Duplicates from String
+def remove_duplicates_from_string(input_str):
+    """Takes a string as input and returns a new 
+    string with duplicate characters removed, 
+    maintaining the original order."""
+
+    single_char_word = ""
+    for character in input_str:
+        if character not in single_char_word:
+            single_char_word += character
+
+    return single_char_word
+
+
+in_word = input("Enter a word: ")
+new_word = remove_duplicates_from_string(in_word)
+print(new_word)
