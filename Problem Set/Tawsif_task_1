@@ -1,0 +1,39 @@
+## Problem 1: Element Frequency
+def element_frequency(lst):
+    """Takes a list of elements as input and 
+    returns a dictionary containing the frequency 
+    of each unique element in the list."""
+    frequency_dict = {}
+    for i in lst:
+        if i in frequency_dict.keys():
+            frequency_dict[i]+= 1
+        else:
+            frequency_dict[i] = 1
+    return frequency_dict
+
+
+input_lst = list(map(int, input().split()))
+element_dict = element_frequency(input_lst)
+print(element_dict)
+
+
+
+## Problem 2: Running Total
+def running_total(lst):
+    """Takes a list of integers as input and 
+    turns a new list containing the running 
+    total of the elements. The running total 
+    of a list is obtained by adding up the 
+    elements cumulatively from the beginning."""
+
+    new_lst = []
+    j = 0
+    for i in lst:
+        j += i
+        new_lst.append(j)
+    return new_lst
+
+
+in_lst = list(map(int, input().split()))
+answer = running_total(in_lst)
+print(answer)
