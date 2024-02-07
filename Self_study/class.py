@@ -1,3 +1,4 @@
+"""
 # dog.py
 class Dog:
     """A simple attempt to mmodel a dog."""
@@ -26,6 +27,7 @@ your_dog.sit()
 your_dog.roll_over()
 
 
+"""
 ## T I Y :
 # 9-1. Restaurant:
 class Restaurant:
@@ -48,3 +50,7 @@ restaurant = Restaurant("Unga Bunga", "Bengali")
 print(f"\nInformation about a {restaurant.cuisine_type} cuisine restaurant called {restaurant.restaurant_name}....\n")
 restaurant.describe_restaurant()
 restaurant.open_restaurant()
+
+
+# 9-2: Three Restaurants:
+restaurant_1 = Restaurant()
