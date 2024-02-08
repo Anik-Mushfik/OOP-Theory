@@ -79,3 +79,16 @@ word_1 = input("Enter 1st word: ")
 word_2 = input("Enter 2nd word: ")
 anagram = are_anagrams(word_1, word_2)
 print(anagram)
+
+
+
+## Problem 5: Reverse Words in a Sentence
+def reverse_words(sentence):
+    """Takes a string representing a sentence as input and 
+    returns a new string where the order of words is reversed 
+    while maintaining the order of characters within each word."""
+
+    new_sen = ""
+
+
+print(reverse_words("Hello World"))
