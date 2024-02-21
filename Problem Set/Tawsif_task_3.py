@@ -11,15 +11,23 @@ class Book:
 class BookStore:
     def __init__(self):
         self.book_record = []
-        book_entry = int(input("Enter the amount of books you want to entry: "))
-        for i in range(book_entry):
-            book_title = input("Enter book title: ")
-            book_author = input("Enter book author: ")
-            book_price = input("Enter the price of the book: ")
-            book_quantity = input("Enter book quantity: ")
-            self.book_record.append(Book(book_title, book_author, book_price, book_quantity))
 
-    def __str__(self):
+    def add_book(self, book):
+        self.book_record.append(book)
+
+    def show_available_books(self):
+        for book in self.book_record:
+            print(f"=> {book.title} by {book.author}")
+
+    def sell_books(self, book):
+        for i in self.book_record:
+            if book == i.titel:
+                i.quantity -= 1
+        
+        
+
+
+    def __str__(self):  #str function can't return non-string type
         return self.book_record
 
 record = BookStore()

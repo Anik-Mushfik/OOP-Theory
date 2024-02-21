@@ -220,3 +220,57 @@
 # print(f"{person_1.last_name}, you have attempted {person_1.login_attempts} times to login.")
 # person_1.reset_login_attempts()
 # print(f"{person_1.last_name}, you have attempted {person_1.login_attempts} times to login.")
+
+
+
+## Inheritance:
+## electric_car.py
+class Car:
+    """A simple attempt to represt a car."""
+
+    def __init__(self, brand, model, year):
+        """Initialize attributes to describe a car."""
+        self.brand = brand
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+
+    def get_descriptive_name(self):
+        """Return a neatly formatted descriptive name."""
+        return f"{self.year} {self.brand} {self.model}"
+    
+    def update_odometer(self, milage):
+        """
+        Set the odometer reading to the given value.
+        Reject the change if it tries to roll the odometer back.
+        """
+        if milage >= self.odometer_reading:
+            self.odometer_reading = milage
+        else:
+            print("You can't roll back an odometer!!!")
+
+    def increment_odometer(self, miles):
+        """
+        Add the given amount to the odometer reading.
+        Reject Negetive increments.
+        """
+        if miles >= 0:
+            self.odometer_reading += miles
+        else:
+            print("You can't enter negative increments and roll back an odometer!!!")
+    
+    def read_odometer(self):
+        """Print a statement showing the car's milage."""
+        print(f"This car has {self.odometer_reading} milage in it.")
+
+
+class ElectricCar(Car):
+    """Reoresents aspects of a specific car, specific to electric vehicles."""
+
+    def __init__(self, brand, model, year):
+        """Initialize attributes of the parent class"""
+        super().__init__(brand, model, year)
+
+
+car = ElectricCar("Audi", "R8", 2014)
+print(car.get_descriptive_name())
