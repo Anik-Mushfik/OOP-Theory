@@ -132,6 +132,9 @@ intences of the child class.
 
 
 
+
+
+
 ## Using Name mangling (Not Pythonic) to creat privacy layer for the balance attribute.
 """
 => To creat a privacy layer for an attribute (private attribute) we use double underscore infront of the attribute name.
@@ -234,6 +237,12 @@ class CurrentAccount(SavingsAccount):
         profit = self._SavingsAccount__balance * 0.03 * 1
         self._SavingsAccount__balance += profit
         return f"Your profit for this year is {profit}"
+
+
+
+
+
+
 
 
 
