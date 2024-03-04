@@ -270,7 +270,19 @@ class ElectricCar(Car):
     def __init__(self, brand, model, year):
         """Initialize attributes of the parent class"""
         super().__init__(brand, model, year)
+        self.battery = Battery()
+
+
+class Battery:
+    """A simple attempt to model a battery for an electric car."""
+
+    def __init__(self, battery_size = 40):
+        self.battery_size = battery_size
+
+    def describe_battery(self):
+        print(f"This car has a {self.battery_size} KMH battery.")
 
 
 car = ElectricCar("Audi", "R8", 2014)
 print(car.get_descriptive_name())
+car.battery.describe_battery()
