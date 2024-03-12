@@ -10,35 +10,32 @@ class Pastry:
     def __init__(self, weight, per_kg_price):
         self.weight = weight
         self.per_kg_price = per_kg_price
-        self.cost = 0
+        self.cost = self.weight * self.per_kg_price
 
 #(c)
-    def add_frosting(self, type):
+    def add_frosting(self, type, quantity):
         if (type == "Butter Cream"):
-            self.cost += 400 * self.weight
+            self.cost += 400 * quantity
         elif (type == "Whipped Cream"):
-            self.cost += 200 * self.weight
+            self.cost += 200 * quantity
         else:
             print(f"Frosting not available!!!")
-
-
-    def total_cost(self):
-        return self.cost + (self.weight * self.per_kg_price)
     
+
 
 class Chocolate(Pastry):
     def __init__(self, weight):
         super().__init__(weight, 500)
 
     def __str__(self):
-        return f"Cake: Chocoate cake \nWeight:{self.weight}; Price:{self.total_cost()}"
+        return f"Cake: Chocoate cake \nWeight:{self.weight}; Price:{self.cost}"
 
 class Vanilla(Pastry):
     def __init__(self, weight):
         super().__init__(weight, 400)
 
     def __str__(self):
-        return f"Cake: Vanilla cake \nWeight:{self.weight}; Price:{self.total_cost()}"
+        return f"Cake: Vanilla cake \nWeight:{self.weight}; Price:{self.cost}"
 
 
 class Order:
@@ -49,15 +46,16 @@ class Order:
         self.price = 0
             
 
-    def make_cake(self, frosting):
+    def creatOrder(self, frosting=None, frosting_qantity=0):
         if self.pastry_type == "Chocolate":
             self.pastry = Chocolate(self.weight)
         else:
             self.pastry = Vanilla(self.weight)
         
         # frosting = input("What frosting do you want? (Butter Cream / Whipped Cream / None) \n=>")
-        if frosting != "None":
-            self.pastry.add_frosting(frosting)
+        # if frostring != "None":
+        if frosting:
+            self.pastry.add_frosting(frosting, frosting_qantity)
 
     def total_price(self):
         self.price += self.quantity * self.pastry.total_cost()
@@ -67,15 +65,26 @@ class Order:
             customer.orders.append(self.pastry)
     
 
-def creatOrder(cus):
-    print(f"Customer Information: \nName:{cus.name} \nLocation:{cus.city} \n##########\nOrder Information:")
+def printRecipt(cus):
+    bill = 0
+    print(f"Customer Information: \nName:{cus.name} \nLocation:{cus.city} \n====================\nOrder Information:")
     for i in cus.orders:
         print(i)
+        bill += i.cost
+    print(f"======================= \nTotal Bill: {bill}")
 
 
+# Creat a customer profile.
 c1 = Customer("Tasu", "Uttora Gram")
+# Order your cake.
 o_1 = Order("Chocolate", 1, 2)
-o_1.make_cake("Butter Cream")
+# Confirm the order with add-ons
+o_1.creatOrder("Butter Cream", .5)
+# Add the order to cart
 o_1.add_to_cart(c1)
+o_2 = Order("Vanilla", 2, 1.5)
+o_2.creatOrder()
+o_2.add_to_cart(c1)
 
-creatOrder(c1)
+# Print the bill recipt for the customer
+printRecipt(c1)
