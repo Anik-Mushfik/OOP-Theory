@@ -5,8 +5,8 @@ class Room:
         self.height = height
         self.width = width
 
-    # def __str__(self):
-    #     return f"{self.name} Room, Area: {self.getarea()} sqft"
+    def __str__(self):
+        return f"{self.name} Room, Area: {self.getarea()} sqft"
     
     def getarea(self):
         return self.height * self.width
