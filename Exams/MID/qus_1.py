@@ -5,11 +5,19 @@ class Account:
         self.trasactions = []
         self.user_name = user_name
         self.balance = 500
+    
+    
+        Account.unique_ID += 1
 
     def withdraw(self):
         pass
 
+print(Account.unique_ID)
+a1 = Account("Hi")
+print(a1.unique_ID)
+a2 = Account("Bye")
 
+print(a2.unique_ID)
 
 # # (b)-
 # from abc import ABC, abstractmethod
