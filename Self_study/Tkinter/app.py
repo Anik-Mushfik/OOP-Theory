@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-def die():
+def convert():
     print(entry.get())
 
 #window creation
@@ -17,7 +17,7 @@ title_lable.pack()
 #input field
 input_frame = ttk.Frame(master= window)
 entry = ttk.Entry(master= input_frame)
-button = ttk.Button(master=input_frame, text="Click to DIE", command= die) 
+button = ttk.Button(master=input_frame, text="Click to DIE", command= convert) 
 #don't call the fuction here, just set it in the variable and it will be called automatically by the button
 entry.pack(side='left', padx=100)
 button.pack(side='right')
