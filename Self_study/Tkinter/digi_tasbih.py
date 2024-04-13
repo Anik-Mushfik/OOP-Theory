@@ -27,7 +27,10 @@ class MyApplication(Tk):
         self.lable_counter.config(text=str(self.count))
 
     def decrease(self):
-        self.count -= 1
+        if self.count <= 0:
+            self.count = 0
+        else:
+            self.count -= 1
         self.lable_counter.config(text= str(self.count))
 
     def reset(self):
