@@ -30,7 +30,11 @@
 
 def decorator_function(original_fuvtion):
     def wrapper_function():
-        return original_fuvtion()
+        print("Wrapper exicuted this before {}".format(original_fuvtion.__name__))
+        # return original_fuvtion()
+        original_fuvtion()
+        print(f"Wrapper exicuted this after {original_fuvtion.__name__}")
+        
     return wrapper_function
 
 def display():
@@ -38,3 +42,14 @@ def display():
 
 decorated_display = decorator_function(display)
 decorated_display()
+
+### => @decorator_function means: display = decorator_function(display) ; display()
+
+@decorator_function
+def dissplay():
+    print("This is tthe right way of using decorator")
+
+dissplay()
+
+
+
