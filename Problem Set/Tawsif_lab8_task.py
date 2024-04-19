@@ -8,3 +8,38 @@ withdraw an amount more than their current balance, raise a custom error called
 and also deal with this error using try and except blocks.
 """
 
+class NotEnoughBalance(Exception):
+    """Raised when withdrawal amoount is greater than balance"""
+    pass
+
+
+class Account:
+    def __init__(self):
+        self.balance = 1000
+
+    def deposite(self, amount):
+        self.balance += amount
+
+    def withdraw(self, amount):
+        try:
+            if (self.balance < amount):
+                raise NotEnoughBalance("Your withdrawal amount exceded current balance.")
+        except NotEnoughBalance as neb:
+            print(neb)
+        else:
+            self.balance -= amount
+
+
+
+ac_1 = Account()
+ac_1.deposite(50000)
+print(ac_1.balance)
+ac_1.withdraw(50000)
+print(ac_1.balance)
+ac_1.withdraw(2000)
+print(ac_1.balance)
+ac_1.withdraw(1000)
+print(ac_1.balance)
+
+
+
