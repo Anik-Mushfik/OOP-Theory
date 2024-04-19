@@ -61,8 +61,6 @@
 
 
 # from functools import wraps
-# ## wraps is a built in decorator used before all the wrappers in case of multiple decorators, 
-# ## so that one of them don't work on other's returned wrapper rather than the main decorated function.
 
 # def my_logger(orig_func):
 #     import logging
@@ -208,19 +206,94 @@
 
 
 
-### => Identity of the target
-from functools import wraps
+# ### => Identity of the target
+# from functools import wraps
 
-def do_twice(func):
-    @wraps(func) #wraps takes the same parameter of the decorator function
-    def wrapper(*args, **kwargs):
-        func(*args, **kwargs)
-        return  func(*args, **kwargs)
-    return wrapper
+# def do_twice(func):
+#     @wraps(func) #wraps takes the same parameter of the decorator function
+#     def wrapper(*args, **kwargs):
+#         func(*args, **kwargs)
+#         return  func(*args, **kwargs)
+#     return wrapper
 
-@do_twice
-def return_greet(name):
-    print(f"Creating Greetings!")
-    return f"Hi {name}"
+# @do_twice
+# def return_greet(name):
+#     print(f"Creating Greetings!")
+#     return f"Hi {name}"
 
-print(return_greet("Anik"))
+# print(return_greet("Anik"))
+
+
+# ### => Usecase 1: Timing of Functions
+# from functools import wraps
+# import time
+
+# def timer(func):
+#     @wraps(func)
+#     def wrapper_timer(*args, **kwargs):
+#         start_time = time.perf_counter()
+#         value = func(*args, **kwargs)
+#         end_time = time.perf_counter()
+#         run_time = end_time - start_time
+#         print(f"Finished {func.__name__} in {run_time:.4f} secs.")
+#         return value
+    
+#     return wrapper_timer
+
+
+# @timer
+# def waste_some_time(num_times):
+#     for _ in range(num_times):
+#         sum([number**2 for number in range(100000)])
+#     # time.sleep(num_times)
+
+# waste_some_time(1)
+# waste_some_time(9)
+
+
+
+# ### => Usecase 2: Debugging
+# import functools
+
+# def debug(func):
+#     @functools.wraps(func)
+#     def wrapper_debug(*args, **kwargs):
+#         args_repr = [repr(a) for a in args]
+#         kwargs_repr = [f"{k}={repr(v)}" for k, v in kwargs.items()]
+#         signature = ", ".join(args_repr + kwargs_repr)
+#         print(f"Calling {func.__name__}({signature})")
+#         value = func(*args, **kwargs)
+#         print(f"{func.__name__}() returned {repr(value)}")
+#         return value
+    
+#     return wrapper_debug
+
+
+# @debug
+# def fibonacci(n):
+#     if n==1 or n==0:
+#         return n
+#     else:
+#         return fibonacci(n-1)+fibonacci(n-2)
+# print(fibonacci(5))
+
+
+
+
+
+PLUGINS = dict()
+
+def register(func):
+    """Register a function as a plug-in"""
+    PLUGINS[func.__name__] = func
+    return func
+
+@register
+def say_hello(name):
+    return f"Hello {name}"
+
+@register
+def be_awesome(name):
+    return f"Yo {name}, together we're the awesomest!"
+
+print(PLUGINS)
