@@ -3,3 +3,6 @@ INFO:root:Ran with args: ('Tasu', 21) & kwargs: {}
 INFO:root:Ran with args: ('Anas', 22) & kwargs: {}
 INFO:root:Ran with args: ('Jamme', 21) & kwargs: {}
 INFO:root:Ran with args: ('Abid', 23) & kwargs: {}
+INFO:root:Ran with args: ('Abid', 23) & kwargs: {}
+INFO:root:Ran with args: ('Dbid', 23) & kwargs: {}
+INFO:root:Ran with args: ('Tom', 32) & kwargs: {}
