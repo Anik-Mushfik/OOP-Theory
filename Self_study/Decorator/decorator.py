@@ -194,10 +194,14 @@ def do_twice(func):
 def return_greet(name):
     print(f"Creating Greetings!")
     return f"Hi {name}"
-print(return_greet("Anik"))
+
 print(return_greet("Anik"))
 """
 Python first reads all the lines and comes to line 198 finds a call then goes to the 194 function and
 finds the decorator and goes to the decorator first and then goes to the wrapper function.
-there it at first
+there it at first just calls the return greet fuction, so the print statement prints 
+but the return statement isn't exicuted as it isn't set to anything.
+while, the call of 189 line is a return so the "func" function (which is the 'return_greet' function) 
+is set to the 
 """
+
