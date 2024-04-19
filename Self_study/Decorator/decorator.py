@@ -121,6 +121,7 @@
 # target()
 
 
+### =>Syntactic Sugar
 
 # def decorator(func):
 #     def wrapper():
@@ -137,23 +138,66 @@
 
 
 
-from datetime import datetime
+# from datetime import datetime
 
-def not_during_night(func):
-    def wrapper():
-        if (7 <= datetime.now().hour <=22):
-            print(f"It's {datetime.now().hour}:{datetime.now().minute}; You can play music now.")
-            # return func()
-            func()
-        else:
-            print(f"Hush! It's {datetime.now().hour}'o clock at night!\nThe neighbours are sleeping...")
+# def not_during_night(func):
+#     def wrapper():
+#         if (7 <= datetime.now().hour <=22):
+#             print(f"It's {datetime.now().hour}:{datetime.now().minute}; You can play music now.")
+#             # return func()
+#             func()
+#         else:
+#             print(f"Hush! It's {datetime.now().hour}'o clock at night!\nThe neighbours are sleeping...")
 
-    return wrapper
+#     return wrapper
+
+# @not_during_night
+# def target():
+#     print("Playing Music...")
+
+# # target = not_during_night(target)
+# target()
 
 
-def target():
-    print("Playing Music...")
 
-target = not_during_night(target)
-target()
+### => Functions With Arguments
 
+# def do_twice(func):
+#     def wrapper_do_twice(*args, **kwargs):
+#         func(*args, **kwargs)
+#         func(*args, **kwargs)
+
+#     return wrapper_do_twice
+
+# @do_twice
+# def target():
+#     print("Weee!")
+# target()
+
+# @do_twice
+# def greet(name):
+#     print(f"HI {name}")
+# greet("Anik")
+
+
+
+### => Returning Values From Decorated Functions
+
+def do_twice(func):
+    def wrapper_do_twice(*args, **kwargs):
+        func(*args, **kwargs)
+        return func(*args, **kwargs)
+
+    return wrapper_do_twice
+
+@do_twice
+def return_greet(name):
+    print(f"Creating Greetings!")
+    return f"Hi {name}"
+print(return_greet("Anik"))
+print(return_greet("Anik"))
+"""
+Python first reads all the lines and comes to line 198 finds a call then goes to the 194 function and
+finds the decorator and goes to the decorator first and then goes to the wrapper function.
+there it at first
+"""

@@ -8,6 +8,13 @@ withdraw an amount more than their current balance, raise a custom error called
 and also deal with this error using try and except blocks.
 """
 
+"""
+make logs
+use datetime module to keep time data
+use decorators for deposit and withdraw
+use multiple decorators
+"""
+
 class NotEnoughBalance(Exception):
     """Raised when withdrawal amoount is greater than balance"""
     pass
