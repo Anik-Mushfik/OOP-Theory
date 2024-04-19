@@ -202,6 +202,7 @@ finds the decorator and goes to the decorator first and then goes to the wrapper
 there it at first just calls the return greet fuction, so the print statement prints 
 but the return statement isn't exicuted as it isn't set to anything.
 while, the call of 189 line is a return so the "func" function (which is the 'return_greet' function) 
-is set to the 
+is returned to the wrapper function, which is returned to the decorator(which is the updated version of return_greet function)
+so when the reurn_greet fuction is printed, the returned fsting of the fuction is printed in the console
 """
 
