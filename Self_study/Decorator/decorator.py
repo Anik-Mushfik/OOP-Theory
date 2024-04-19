@@ -181,14 +181,42 @@
 
 
 
-### => Returning Values From Decorated Functions
+# ### => Returning Values From Decorated Functions
+
+# def do_twice(func):
+#     def wrapper_do_twice(*args, **kwargs):
+#         func(*args, **kwargs)
+#         return func(*args, **kwargs)
+
+#     return wrapper_do_twice
+
+# @do_twice
+# def return_greet(name):
+#     print(f"Creating Greetings!")
+#     return f"Hi {name}"
+
+# print(return_greet("Anik"))
+# """
+# Python first reads all the lines and comes to line 198 finds a call then goes to the 194 function and
+# finds the decorator and goes to the decorator first and then goes to the wrapper function.
+# there it at first just calls the return greet fuction, so the print statement prints 
+# but the return statement isn't exicuted as it isn't set to anything.
+# while, the call of 189 line is a return so the "func" function (which is the 'return_greet' function) 
+# is returned to the wrapper function, which is returned to the decorator(which is the updated version of return_greet function)
+# so when the reurn_greet fuction is printed, the returned fsting of the fuction is printed in the console
+# """
+
+
+
+### => Identity of the target
+from functools import wraps
 
 def do_twice(func):
-    def wrapper_do_twice(*args, **kwargs):
+    @wraps(func) #wraps takes the same parameter of the decorator function
+    def wrapper(*args, **kwargs):
         func(*args, **kwargs)
-        return func(*args, **kwargs)
-
-    return wrapper_do_twice
+        return  func(*args, **kwargs)
+    return wrapper
 
 @do_twice
 def return_greet(name):
@@ -196,13 +224,3 @@ def return_greet(name):
     return f"Hi {name}"
 
 print(return_greet("Anik"))
-"""
-Python first reads all the lines and comes to line 198 finds a call then goes to the 194 function and
-finds the decorator and goes to the decorator first and then goes to the wrapper function.
-there it at first just calls the return greet fuction, so the print statement prints 
-but the return statement isn't exicuted as it isn't set to anything.
-while, the call of 189 line is a return so the "func" function (which is the 'return_greet' function) 
-is returned to the wrapper function, which is returned to the decorator(which is the updated version of return_greet function)
-so when the reurn_greet fuction is printed, the returned fsting of the fuction is printed in the console
-"""
-
