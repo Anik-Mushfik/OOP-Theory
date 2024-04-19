@@ -47,4 +47,3 @@ ac_1.withdraw(2000)
 print(ac_1.balance)
 ac_1.withdraw(1000)
 print(ac_1.balance)
-
