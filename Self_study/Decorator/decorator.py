@@ -278,22 +278,44 @@
 # print(fibonacci(5))
 
 
+# ### => Register of functions
+
+
+# PLUGINS = dict()
+
+# def register(func):
+#     """Register a function as a plug-in"""
+#     PLUGINS[func.__name__] = func
+#     return func
+
+# @register
+# def say_hello(name):
+#     return f"Hello {name}"
+
+# @register
+# def be_awesome(name):
+#     return f"Yo {name}, together we're the awesomest!"
+
+# print(PLUGINS)
 
 
 
-PLUGINS = dict()
 
-def register(func):
-    """Register a function as a plug-in"""
-    PLUGINS[func.__name__] = func
-    return func
+# PLUGINS = dict()
 
-@register
-def say_hello(name):
-    return f"Hello {name}"
+# def register(func):
+#     """Register a function as a plug-in"""
+#     PLUGINS[func.__name__] = func
+#     return func("Anik")
 
-@register
-def be_awesome(name):
-    return f"Yo {name}, together we're the awesomest!"
+# @register
+# def say_hello(name):
+#     return f"Hello {name}"
 
-print(PLUGINS)
+# @register
+# def be_awesome(name):
+#     return f"Yo {name}, together we're the awesomest!"
+
+# print(say_hello)
+# print(be_awesome)
+# print(PLUGINS)
