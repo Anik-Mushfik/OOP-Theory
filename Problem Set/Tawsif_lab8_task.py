@@ -19,15 +19,30 @@ class NotEnoughBalance(Exception):
     """Raised when withdrawal amoount is greater than balance"""
     pass
 
+    
 
 class Account:
     def __init__(self):
         self.balance = 1000
 
+    
+    def log_balance(self, func):
+        def wrapper():
+            print(f"Previous Balance: {self.balance}")
+            value = func(self.amount)
+            print(f"Current Balance: {self.balance}")
+            return value
+        return wrapper
+    
+    
+    @log_balance
     def deposite(self, amount):
+        self.amount = amount
         self.balance += amount
 
+    @log_balance
     def withdraw(self, amount):
+        self.amount = amount
         try:
             if (self.balance < amount):
                 raise NotEnoughBalance("Your withdrawal amount exceded current balance.")
