@@ -16,3 +16,13 @@ while True:
     except ZeroDivisionError:
         print("You can't divide by 0!")
     else: print(answer)
+
+
+
+def add(a,b):
+    if not isinstance(a,type(1)) or not isinstance(b,type(1)):
+        raise ValueError("Operand not integer type")
+    else:
+        return a+b
+print(add(4,5))
+add(4,"dd")
