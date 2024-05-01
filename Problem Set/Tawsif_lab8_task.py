@@ -15,6 +15,11 @@ use decorators for deposit and withdraw
 use multiple decorators
 """
 
+
+
+from functools import wraps
+import datetime
+
 class NotEnoughBalance(Exception):
     """Raised when withdrawal amoount is greater than balance"""
     pass
@@ -26,17 +31,19 @@ class Account:
         self.balance = 1000
 
     
-    def log_balance(self, func):
-        def wrapper():
-            print(f"Previous Balance: {self.balance}")
-            value = func(self.amount)
+    def log_balance(func):
+
+        @wraps(func)
+        def wrapper(self, amount):
+            print(f"\n{datetime.datetime.now()}:\nAttempting {func.__name__} of {amount} BDT")
+            value = func(self, amount)
             print(f"Current Balance: {self.balance}")
             return value
         return wrapper
     
     
     @log_balance
-    def deposite(self, amount):
+    def deposit(self, amount):
         self.amount = amount
         self.balance += amount
 
@@ -45,7 +52,7 @@ class Account:
         self.amount = amount
         try:
             if (self.balance < amount):
-                raise NotEnoughBalance("Your withdrawal amount exceded current balance.")
+                raise NotEnoughBalance("Transaction Stopped!!! \nYour withdrawal amount exceded current balance.")
         except NotEnoughBalance as neb:
             print(neb)
         else:
@@ -53,12 +60,67 @@ class Account:
 
 
 
+
+
+
+
+
+
+
+
+
+# import datetime
+
+# class NotEnoughBalance(Exception):
+#     """Raised when withdrawal amount is greater than balance."""
+#     pass
+
+# class Account:
+#     def __init__(self, initial_balance=1000):
+#         self.balance = initial_balance
+
+#     def log(func):
+#         def wrapper(self, amount):
+#             print(f"{datetime.datetime.now()}: Attempting {func.__name__} of {amount}")
+#             result = func(self, amount)
+#             print(f"{datetime.datetime.now()}: New Balance: {self.balance}")
+#             return result
+#         return wrapper
+
+#     @log
+#     def deposit(self, amount):
+#         self.balance += amount
+#         return self.balance
+
+#     @log
+#     def withdraw(self, amount):
+#         if self.balance < amount:
+#             raise NotEnoughBalance("Your withdrawal amount exceeds current balance.")
+#         self.balance -= amount
+#         return self.balance
+
+# # Example usage:
+# ac_1 = Account()
+# print(ac_1.deposit(50000))
+# print(ac_1.withdraw(50000))
+# try:
+#     print(ac_1.withdraw(2000))
+# except NotEnoughBalance as e:
+#     print(e)
+# try:
+#     print(ac_1.withdraw(1000))
+# except NotEnoughBalance as e:
+#     print(e)
+
+
+
+
+
+
+
+
 ac_1 = Account()
-ac_1.deposite(50000)
-print(ac_1.balance)
+ac_1.deposit(50000)
 ac_1.withdraw(50000)
-print(ac_1.balance)
 ac_1.withdraw(2000)
-print(ac_1.balance)
 ac_1.withdraw(1000)
-print(ac_1.balance)
